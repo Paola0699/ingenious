@@ -1,0 +1,94 @@
+<header>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background:#1A1399">
+    <img style="width:10%" src="/images/logoblanco.png">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          {{#link-to "ingenious.superadmin.dashboard"}}<a class="nav-link" href="#">Inicio</a>{{/link-to}}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Registrar Participante</a>
+        </li>
+        <li class="nav-item">
+          {{#link-to "ingenious.superadmin.talleres"}}<a class="nav-link">Talleres</a>{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to "ingenious.superadmin.nuevoadmon"}}<a class="nav-link">Nuevo Administrador</a>{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to "ingenious.superadmin.boletos"}}<a class="nav-link" href="#">Boletos</a>{{/link-to}}
+        </li>
+      </ul>
+      <form class="form-inline">
+        {{input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" value=buscar}}
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+  	<div class="row">
+  		<div class="col-1"></div>
+  		<div class="col-10">
+  			<br>
+  			<br>
+  			<h1>Boletos</h1>
+  			<br>
+  			<div class="row">
+  				<div class="col-4">
+  					<div class="card">
+					  <div class="card-header">
+					    Registro de boletos
+					  </div>
+					  <div class="card-body">
+					    <div class="input-group mb-3">
+						  {{input type="text" class="form-control" placeholder="Folio del boleto" aria-label="Username" aria-describedby="basic-addon1" value=folio}}
+						</div>
+					    <button {{action "guardarBoleto" folio}} class="btn btn-outline-secondary btn-block ">GUARDAR BOLETO</button>
+					  </div>
+					</div>
+  				</div>
+  				<div class="col-8">
+            <div class="card">
+              <div class="card-header">
+                Boletos registrados
+              </div>
+              <div class="card-body">
+                <table class="table table-hover">
+                   <thead>
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Apellidos</th>
+                      <th scope="col">No. Boleto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each model.participantes as |participante|}}
+                    {{#unless participante.isNew}}
+                    <tr>
+                      <td>{{participante.nombre}}</td>
+                      <td>{{participante.apellidoP}} {{participante.apellidoM}}</td>
+                      <td>{{participante.boleto.serie}}</td>
+                    </tr>
+                    {{/unless}}
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  			</div>
+  		</div>
+  		<div class="col-1"></div>
+  	</div>
+  </div>

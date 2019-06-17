@@ -1,0 +1,13 @@
+.ember-power-select-trigger{
+	height: 35px!important;
+	color: #616161 !important;
+}
+
+.ember-power-select-option{
+	color: #9e9e9e!important;
+}
+
+.ember-power-select-option[aria-current="true"]{
+	    background-color: #1A1399!important;
+	    color: white!important;
+}
